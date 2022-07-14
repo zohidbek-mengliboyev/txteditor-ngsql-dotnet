@@ -1,1 +1,18 @@
-<p>pagecontent works!</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Content</th>
+       <th scope="col">Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of res">
+      <th scope="row">{{data.Id}}</th>
+      <td>{{data.Title}}</td>
+      <td>{{data.Content}}</td>
+      <td>  <button (click)="GetcontentById(data.Id)" type="submit" class="btn btn-info">Details</button></td>
+    </tr>
+  </tbody>
+</table>
