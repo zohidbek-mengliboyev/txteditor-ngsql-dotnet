@@ -1,4 +1,4 @@
-<form role="form" #myForm="ngForm" accept-charset="UTF-8" (ngSubmit)="onSubmit()" novalidate style="margin: 30px;">
+<form role="form" #myForm="ngForm" accept-charset="UTF-8" (ngSubmit)="onClickSubmit()" novalidate style="margin: 30px;">
   <div class="form-group">
       <input autofocus autocomplete="none" type="text" name="UserName" placeholder="Enter Title"
           [(ngModel)]="contentdata.Title" class="form-control" required #PageContentTitle="ngModel"
@@ -14,4 +14,4 @@
           </div>
       </div>
   </div>
-</form> 
+</form>

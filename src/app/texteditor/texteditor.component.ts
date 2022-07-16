@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild ,ElementRef } from '@angular/core';
 import { ContentService } from "../content.service";
 import { Content } from "../Content";
 import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-texteditor',
@@ -17,11 +17,22 @@ export class TexteditorComponent implements OnInit {
   @ViewChild('PageContent') PageContent: any;
   res: any;
 
-  constructor(private contentservice:ContentService, private router: Router) { }
 
-  contentdata=new Content();
+  constructor(private contentservice: ContentService,
+              private router: Router,
+              private route: ActivatedRoute) { }
+
+  public id!: number;
+  public editMode: boolean = false;
+  public contentdata = new Content();
 
   ngOnInit(): void {
+    this.route.params.subscribe((params: Params) => {
+      this.id = +params['id']
+      this.editMode = params['id'] != null
+
+    })
+
     this.Getcontent()
     this.ckeConfig = {
       allowedContent: false,
@@ -30,20 +41,35 @@ export class TexteditorComponent implements OnInit {
     };
   }
 
-  onSubmit()
-  {
-    debugger;
-    debugger;
-    this.contentservice.AddUpdateContent(this.contentdata).subscribe((data : any) => {
-      debugger;
-      alert("Data saved Successfully");
-      this.router.navigate(['/Post']);
+  // onSubmit()
+  // {
+  //   // debugger;
+  //   // debugger;
+  //   this.contentservice.AddUpdateContent(this.contentdata).subscribe((data : any) => {
+  //     debugger;
+  //     alert("Data saved Successfully");
+  //     this.router.navigate(['/Post']);
 
-    })
+  //   })
+  // }
+
+  onClickSubmit() {
+    if (this.editMode) {
+      this.contentservice.updateContent(this.id, this.contentdata).subscribe((data: any) => {
+        alert("Data updated Successfully!");
+        this.router.navigate(['/Put']);
+      })
+    } else  {
+      this.contentservice.addContent(this.contentdata).subscribe((data: any) => {
+        alert("Data saved Successfully!");
+        this.router.navigate(['/Post']);
+      })
+    }
   }
+
   Getcontent()
   {
-    this.contentservice.Getcontent().subscribe((data:any)=>{
+    this.contentservice.getContentList().subscribe((data:any)=>{
       this.res=data;
       console.log(this.res);
     })

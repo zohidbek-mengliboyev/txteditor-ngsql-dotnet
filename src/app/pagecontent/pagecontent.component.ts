@@ -19,7 +19,7 @@ export class PagecontentComponent implements OnInit {
   }
   Getcontent()
   {
-    this.contentservice.Getcontent().subscribe((data:any)=>{
+    this.contentservice.getContentList().subscribe((data:any)=>{
       this.res=data;
       this.terms= this.res[1].pageContentTitle;
       this.cont= this.res[1].Content;
@@ -29,6 +29,6 @@ export class PagecontentComponent implements OnInit {
   GetcontentById(id:number)
   {
     this.router.navigate(['/Details'], { queryParams: { Id: id } });
-  }  
+  }
 
 }

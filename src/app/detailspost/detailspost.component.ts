@@ -21,7 +21,7 @@ export class DetailspostComponent implements OnInit {
 
   GetcontentById(Id:number)
   {
-     this.contentservice.GetcontentById(Id).subscribe((data: any)=>{
+     this.contentservice.getContentById(Id).subscribe((data: any)=>{
        this.res=data;
        this.Title=this.res.Title
        this.content=this.res.Content
