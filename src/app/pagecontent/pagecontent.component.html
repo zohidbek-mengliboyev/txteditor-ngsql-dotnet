@@ -1,4 +1,4 @@
-<table class="table">
+<table class="table table-responsive">
   <thead>
     <tr>
       <th scope="col">#</th>
@@ -7,12 +7,12 @@
        <th scope="col">Details</th>
     </tr>
   </thead>
-  <tbody>
-    <tr *ngFor="let item of contentList$ | async">
-      <th scope="row">{{item.Id}}</th>
-      <td>{{item.Title}}</td>
-      <td>{{item.Content}}</td>
-      <td><button (click)="GetcontentById(item.Id)" type="submit" class="btn btn-info">Details</button></td>
+  <tbody class="content">
+    <tr *ngFor="let item of res.data">
+      <th scope="row">{{item.id}}</th>
+      <td >{{item.title}}</td>
+      <td style="white-space: pre-line;">{{item.content}}</td>
+      <td><button (click)="GetcontentById(item.id)" type="submit" class="btn btn-info">Details</button></td>
     </tr>
   </tbody>
 </table>

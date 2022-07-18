@@ -18,15 +18,12 @@ export class PagecontentComponent implements OnInit {
   constructor(private contentservice: ContentService, private router: Router) { }
 
   ngOnInit(): void {
-    this.contentList$ = this.contentservice.getContentList();
     this.Getcontent();
   }
   Getcontent()
   {
-    this.contentservice.getContentList().subscribe((data:any)=>{
+    this.contentservice.getContentList().subscribe((data)=>{
       this.res=data;
-      this.title = this.res[1].Title;
-      this.cont = this.res[1].Content;
       console.log(this.res);
     })
   }
