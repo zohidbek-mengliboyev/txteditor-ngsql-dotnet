@@ -9,7 +9,7 @@ import { ContentService } from '../content.service';
 })
 export class DetailspostComponent implements OnInit {
   res: any;
-  Title: any;
+  title: any;
   content: any;
 
   constructor(private route: ActivatedRoute, private contentservice:ContentService) { }
@@ -23,8 +23,8 @@ export class DetailspostComponent implements OnInit {
   {
      this.contentservice.getContentById(Id).subscribe((data: any)=>{
        this.res=data;
-       this.Title=this.res.Title
-       this.content=this.res.Content
+       this.title=this.res.Title;
+       this.content=this.res.Content;
        console.log(this.res);
     });
   }

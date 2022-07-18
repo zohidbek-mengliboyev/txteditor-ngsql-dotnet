@@ -1,5 +1,5 @@
 export class Content {
-  Id: number | undefined;
-  Title: string | undefined;;
-  Content: string | undefined;;
+  Id: number;
+  Title: string;
+  Content: string;
 }

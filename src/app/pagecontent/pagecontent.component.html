@@ -8,11 +8,21 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let data of res">
-      <th scope="row">{{data.Id}}</th>
-      <td>{{data.Title}}</td>
-      <td>{{data.Content}}</td>
-      <td>  <button (click)="GetcontentById(data.Id)" type="submit" class="btn btn-info">Details</button></td>
+    <tr *ngFor="let item of contentList$ | async">
+      <th scope="row">{{item.Id}}</th>
+      <td>{{item.Title}}</td>
+      <td>{{item.Content}}</td>
+      <td><button (click)="GetcontentById(item.Id)" type="submit" class="btn btn-info">Details</button></td>
     </tr>
   </tbody>
 </table>
+
+
+<!-- <tbody>
+  <tr *ngFor="let data of res">
+    <th scope="row">{{data.Id}}</th>
+    <td>{{data.Title}}</td>
+    <td>{{data.Content}}</td>
+    <td><button (click)="GetcontentById(data.Id)" type="submit" class="btn btn-info">Details</button></td>
+  </tr>
+</tbody> -->

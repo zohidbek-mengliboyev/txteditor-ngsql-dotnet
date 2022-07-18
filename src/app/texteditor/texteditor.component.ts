@@ -12,27 +12,18 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 export class TexteditorComponent implements OnInit {
   name = 'ng2-ckeditor';
   ckeConfig: any;
-  mycontent: string | undefined;
-  log: string | undefined
+  mycontent: string;
+  log: string;
   @ViewChild('PageContent') PageContent: any;
   res: any;
-
 
   constructor(private contentservice: ContentService,
               private router: Router,
               private route: ActivatedRoute) { }
 
-  public id!: number;
-  public editMode: boolean = false;
-  public contentdata = new Content();
+  contentdata = new Content();
 
   ngOnInit(): void {
-    this.route.params.subscribe((params: Params) => {
-      this.id = +params['id']
-      this.editMode = params['id'] != null
-
-    })
-
     this.Getcontent()
     this.ckeConfig = {
       allowedContent: false,
@@ -41,30 +32,11 @@ export class TexteditorComponent implements OnInit {
     };
   }
 
-  // onSubmit()
-  // {
-  //   // debugger;
-  //   // debugger;
-  //   this.contentservice.AddUpdateContent(this.contentdata).subscribe((data : any) => {
-  //     debugger;
-  //     alert("Data saved Successfully");
-  //     this.router.navigate(['/Post']);
-
-  //   })
-  // }
-
-  onClickSubmit() {
-    if (this.editMode) {
-      this.contentservice.updateContent(this.id, this.contentdata).subscribe((data: any) => {
-        alert("Data updated Successfully!");
-        this.router.navigate(['/Put']);
-      })
-    } else  {
-      this.contentservice.addContent(this.contentdata).subscribe((data: any) => {
-        alert("Data saved Successfully!");
-        this.router.navigate(['/Post']);
-      })
-    }
+  onSubmit() {
+    this.contentservice.addContent(this.contentdata).subscribe((data: any) => {
+      alert("Data Saved Successfully!");
+      this.router.navigate(['/Post']);
+    })
   }
 
   Getcontent()
