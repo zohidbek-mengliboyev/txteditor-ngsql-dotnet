@@ -28,7 +28,7 @@ export class ContentService {
     return this.http.get<Content[]>(this.txtEditorUrl + '/PostContent/GetAll');
   }
 
-  getContentById(id: number | string): Observable<Content> {
+  getContentById(id: number): Observable<Content> {
     return this.http.get<Content>(this.txtEditorUrl + `/PostContent/Get/${id}`);
   }
 

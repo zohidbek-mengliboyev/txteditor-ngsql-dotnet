@@ -10,8 +10,6 @@ import { Observable } from 'rxjs';
 })
 export class PagecontentComponent implements OnInit {
   res: any = [];
-  title: any;
-  cont: any;
 
   contentList$: Observable<any[]>;
 
