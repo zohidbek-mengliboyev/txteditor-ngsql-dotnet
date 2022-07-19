@@ -8,7 +8,7 @@ import { ContentService } from '../content.service';
   styleUrls: ['./detailspost.component.scss']
 })
 export class DetailspostComponent implements OnInit {
-  res: any;
+  res: any = [];
   title: any;
   content: any;
 
@@ -21,11 +21,12 @@ export class DetailspostComponent implements OnInit {
 
   GetcontentById(Id:number)
   {
-     this.contentservice.getContentById(Id).subscribe((data: any)=>{
+     this.contentservice.getContentById(Id).subscribe((data)=>{
        this.res=data;
-       this.title=this.res.Title;
-       this.content=this.res.Content;
-       console.log(this.res);
+       this.title=this.res.data.Title;
+       console.log(this.title);
+       this.content=this.res.data.Content;
+       console.log(this.content);
     });
   }
 
